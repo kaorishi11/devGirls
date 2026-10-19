@@ -1,0 +1,37 @@
+:root {
+  --perfil-bg: #f3fbf9;
+  --perfil-surface: #ffffff;
+  --perfil-primary: #136a5b;
+  --perfil-primary-strong: #0d4f42;
+  --perfil-accent: #3ec7b3;
+  --perfil-accent-soft: #dffaf5;
+  --perfil-text: #1d2d2a;
+  --perfil-muted: #5a6e69;
+  --perfil-shadow: 0 20px 45px rgba(19, 106, 91, 0.12);
+}
+
+body {
+  background: linear-gradient(180deg, #f0fffb 0%, #f8fffd 100%);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #0d4f42 0%, #157768 100%);
+}
+
+.card {
+  border: 1px solid rgba(19,106,91,0.08);
+  box-shadow: var(--perfil-shadow);
+}
+
+.stat strong {
+  color: var(--perfil-primary);
+}
+
+.badge.em_atendimento {
+  background: #dff7eb;
+  color: #16724b;
+}
+
+.form-grid button {
+  background: linear-gradient(135deg, var(--perfil-primary) 0%, var(--perfil-accent) 100%);
+}

@@ -1,0 +1,42 @@
+:root {
+  --perfil-bg: #f4f9ff;
+  --perfil-surface: #ffffff;
+  --perfil-primary: #0f3a5e;
+  --perfil-primary-strong: #0d2d48;
+  --perfil-accent: #2fa6d9;
+  --perfil-accent-soft: #d9f3ff;
+  --perfil-text: #1d2b3a;
+  --perfil-muted: #5d7082;
+  --perfil-shadow: 0 20px 45px rgba(15, 58, 94, 0.12);
+}
+
+body {
+  background: linear-gradient(180deg, #f0f8ff 0%, #f6fbff 100%);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #0d2c4a 0%, #174d7d 100%);
+}
+
+.card {
+  border: 1px solid rgba(15,58,94,0.06);
+  box-shadow: var(--perfil-shadow);
+}
+
+.stat strong {
+  color: var(--perfil-primary);
+}
+
+.badge.aguardando_medico {
+  background: #dfefff;
+  color: #1a5cb9;
+}
+
+.badge.em_atendimento {
+  background: #dff7eb;
+  color: #16724b;
+}
+
+.form-grid button {
+  background: linear-gradient(135deg, #0d2c4a 0%, #2fa6d9 100%);
+}
