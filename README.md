@@ -1,6 +1,6 @@
 # Smart Care — Gestão Hospitalar Inteligente
 
-Sistema web de gestão hospitalar desenvolvido para o **SENAI DEV EXPERIENCE 2026 — Módulo A: Programação de Aplicações Web**. O Smart Care tem como objetivo auxiliar hospitais, clínicas e Unidades de Pronto Atendimento (UPAs) na organização do fluxo de pacientes, classificação de risco, gerenciamento de leitos e acompanhamento dos atendimentos.
+O Smart Care tem como objetivo auxiliar hospitais, clínicas e Unidades de Pronto Atendimento (UPAs) na organização do fluxo de pacientes, classificação de risco, gerenciamento de leitos e acompanhamento dos atendimentos.
 
 ## 1. Sobre o projeto
 
@@ -39,17 +39,32 @@ O projeto está organizado em diretórios para separar a interface, as configura
 moduloA_devGirls/
 ├── assets/
 │   ├── css/
+│   │    ├── perfil-admin.css
+│   │    ├── perfil-enfermeiro.css
+│   │    ├── perfil-medico.css
+│   │    ├── perfil-paciente.css
+│   │    └── style.css
 │   ├── js/
+│   │    └── script.js
 │   └── images/
 ├── config/
 │   └── database.php
 ├── includes/
 │   ├── header.php
+│   ├── auth.php
 │   └── footer.php
 ├── pages/
+│   ├── alertas.php
+│   ├── atendimentos.php
+│   ├── dashboard.php
+│   ├── espacos.php
+│   ├── fichas.php
+│   ├── login.php
+│   ├── logout.php
 │   ├── pacientes.php
-│   ├── leitos.php
-│   └── dashboard.php
+│   ├── profissionais.php
+│   ├── triagem.php
+│   └── usuarios.php
 ├── index.php
 └── README.md
 ```
@@ -145,67 +160,6 @@ Como opção de implementação, pode ser utilizado o **GPT-4o mini, da OpenAI**
 
 O modelo pode auxiliar na interpretação de sintomas, organização das informações clínicas e geração de justificativas para as sugestões de prioridade. A classificação final deverá respeitar as regras clínicas adotadas pela instituição e ser validada por um profissional habilitado.
 
-### Integração proposta
-
-A integração pode ser realizada no servidor PHP por meio de uma requisição HTTP à API da OpenAI.
-
-**Endpoint proposto:**
-
-```http
-POST https://api.openai.com/v1/chat/completions
-```
-
-**Cabeçalhos:**
-
-```http
-Authorization: Bearer SUA_CHAVE_DE_API
-Content-Type: application/json
-```
-
-**Exemplo ilustrativo de requisição:**
-
-```json
-{
-  "model": "gpt-4o-mini",
-  "messages": [
-    {
-      "role": "system",
-      "content": "Você é um assistente de apoio à triagem hospitalar. Analise as informações fornecidas e apresente uma sugestão estruturada de prioridade, justificativa e necessidade de avaliação profissional. Não invente dados ausentes nem substitua a avaliação clínica."
-    },
-    {
-      "role": "user",
-      "content": "Queixa: falta de ar. Saturação: 91%. Informe os sinais que exigem atenção imediata e indique que a avaliação profissional é necessária."
-    }
-  ],
-  "temperature": 0.2
-}
-```
-
-Esse exemplo demonstra o formato de uma chamada possível. Ele não representa uma requisição já executada pelo sistema nem uma classificação clínica validada.
-
-A chave de API deverá ser armazenada em variável de ambiente ou em configuração protegida no servidor. Ela nunca deve ser disponibilizada no JavaScript do navegador ou enviada ao GitHub.
-
-### Prompt proposto para a triagem
-
-O prompt de instrução pode seguir esta abordagem:
-
-> Analise os sintomas, os sinais vitais informados, o tempo de espera e as informações disponíveis do paciente. Identifique sinais de alerta, destaque informações ausentes e apresente uma sugestão de prioridade para avaliação pela equipe de saúde. Não invente dados, não forneça diagnóstico definitivo e não substitua o Protocolo de Manchester nem a avaliação do profissional habilitado. Se houver sinais de possível emergência, destaque a necessidade de avaliação imediata.
-
-Os dados enviados ao serviço externo devem ser limitados ao estritamente necessário, preferencialmente sem nome, CPF ou outros identificadores pessoais.
-
-### Tratamento da resposta
-
-O servidor deverá:
-
-1. Validar os dados recebidos do formulário.
-2. Enviar somente as informações necessárias ao serviço de IA.
-3. Verificar se a requisição foi concluída com sucesso.
-4. Interpretar e validar a resposta antes de apresentá-la na interface.
-5. Exibir a sugestão junto com um aviso de apoio à decisão clínica.
-6. Permitir que o profissional habilitado confirme ou altere a classificação.
-
-A integração deverá tratar falhas de conexão, respostas inválidas, limites de utilização e indisponibilidade do serviço.
-
 ## 6. Lógica de triagem
 
 A triagem proposta utiliza as cinco categorias de prioridade previstas no desafio, inspiradas no Protocolo de Manchester.
@@ -286,4 +240,46 @@ Como a plataforma pode lidar com dados pessoais e informações de saúde, sua i
 
 - Controle de acesso conforme o perfil do usuário.
 - Autenticação segura e armazenamento protegido de senhas.
-- Consult
+- Consultas SQL parametrizadas por PDO.
+- Validação dos dados recebidos e proteção contra XSS e CSRF.
+- Proteção de credenciais e chaves de API.
+- Registro de ações relevantes para auditoria.
+- Restrição de acesso aos prontuários.
+- Tratamento dos dados conforme a Lei Geral de Proteção de Dados (LGPD).
+- Uso de dados fictícios ou anonimizados durante testes e demonstrações.
+
+As sugestões geradas por IA são recursos de apoio à decisão e não substituem a avaliação de médicos e enfermeiros habilitados.
+
+## 10. Testes recomendados
+
+Para avaliar o funcionamento do Smart Care, recomenda-se testar:
+
+- Cadastro e autenticação de usuários.
+- Cadastro e atualização de pacientes.
+- Classificação nas cinco categorias de prioridade.
+- Ordenação da fila por prioridade e tempo de espera.
+- Alocação apenas de recursos compatíveis e disponíveis.
+- Bloqueio da alocação de leitos ocupados ou em manutenção.
+- Indisponibilidade da API de IA e ativação do modo de contingência.
+- Tratamento de erros e respostas inválidas da API.
+- Controle de acesso e proteção das informações.
+- Atualização dos estados de pacientes e leitos.
+
+Os testes devem utilizar dados fictícios e não podem ser utilizados para validar condutas clínicas reais.
+
+## 11. Limitações e melhorias futuras
+
+O projeto pode evoluir com a integração efetiva de um modelo de IA, atualização em tempo real do mapa de ocupação, previsão de demanda para os próximos 7 e 30 dias, geração de indicadores gerenciais, alertas automáticos e assistente virtual para consulta de informações autorizadas.
+
+A implementação dessas funcionalidades deverá ser verificada no código antes de serem apresentadas como recursos concluídos.
+
+## 12. Equipe e repositório
+
+**Projeto:** Smart Care  
+**Instituição:** SENAI — DEV EXPERIENCE 2026  
+**Módulo:** A — Programação de Aplicações Web  
+**Repositório:** https://github.com/kaorishi11/moduloA_devGirls
+
+---
+
+*Observação: este README descreve a arquitetura e a abordagem proposta para a solução. Os modelos, endpoints, tabelas, funcionalidades e instruções deverão ser ajustados para refletir fielmente a implementação existente no repositório.*
