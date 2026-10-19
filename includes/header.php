@@ -18,6 +18,7 @@ $perfilCssAtual = $perfilCssMap[$u['perfil'] ?? ''] ?? '../assets/css/style.css'
 <link rel="stylesheet" href="<?= htmlspecialchars($perfilCssAtual) ?>">
 </head>
 <body>
+<div class="app-shell">
 <nav class="sidebar">
   <h2>Senn Med AI</h2>
   <a href="dashboard.php">Dashboard</a>
@@ -33,4 +34,4 @@ $perfilCssAtual = $perfilCssMap[$u['perfil'] ?? ''] ?? '../assets/css/style.css'
   <?php endif; ?>
   <a href="logout.php" class="logout">Sair (<?= htmlspecialchars($u['nome']) ?>)</a>
 </nav>
-<main class="content"></main>
+<main class="content">
