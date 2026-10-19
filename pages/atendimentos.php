@@ -73,4 +73,3 @@ $espacos = $pdo->query("SELECT id, codigo, tipo FROM espacos WHERE status='livre
   </label>
   <button type="submit">Salvar atendimento</button>
 </form>
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>

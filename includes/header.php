@@ -1,13 +1,21 @@
 <?php
 require_once __DIR__ . '/auth.php';
 $u = usuarioAtual();
+$perfilCssMap = [
+  'administrador' => '../assets/css/perfil-admin.css',
+  'medico' => '../assets/css/perfil-medico.css',
+  'enfermeiro' => '../assets/css/perfil-enfermeiro.css',
+  'paciente' => '../assets/css/perfil-paciente.css',
+];
+$perfilCssAtual = $perfilCssMap[$u['perfil'] ?? ''] ?? '../assets/css/style.css';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Senn Med AI</title>
-<link rel="stylesheet" href="/senn_med_ai/assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="<?= htmlspecialchars($perfilCssAtual) ?>">
 </head>
 <body>
 <nav class="sidebar">
@@ -20,7 +28,7 @@ $u = usuarioAtual();
   <a href="espacos.php">Espaços</a>
   <a href="profissionais.php">Profissionais</a>
   <a href="alertas.php">Alertas</a>
-  <?php if ($u['perfil'] === 'administrador'): ?>
+  <?php if (($u['perfil'] ?? '') === 'administrador'): ?>
     <a href="usuarios.php">Usuários</a>
   <?php endif; ?>
   <a href="logout.php" class="logout">Sair (<?= htmlspecialchars($u['nome']) ?>)</a>

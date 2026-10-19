@@ -1,0 +1,46 @@
+:root {
+  --perfil-bg: #fffaf6;
+  --perfil-surface: #ffffff;
+  --perfil-primary: #5d3a7a;
+  --perfil-primary-strong: #44285d;
+  --perfil-accent: #e98cb0;
+  --perfil-accent-soft: #fbe8f1;
+  --perfil-text: #2a2231;
+  --perfil-muted: #6f5f73;
+  --perfil-shadow: 0 20px 45px rgba(93, 58, 122, 0.12);
+}
+
+body {
+  background: linear-gradient(180deg, #fff7fb 0%, #fffafc 100%);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #43285c 0%, #603d7d 100%);
+}
+
+.card {
+  border: 1px solid rgba(93, 58, 122, 0.08);
+  box-shadow: var(--perfil-shadow);
+}
+
+.stat strong {
+  color: var(--perfil-primary);
+}
+
+.badge.aguardando_triagem {
+  background: #fff0d6;
+  color: #8a5a00;
+}
+
+.badge.alta {
+  background: #f2e7ff;
+  color: #6a3db5;
+}
+
+.form-grid button {
+  background: linear-gradient(
+    135deg,
+    var(--perfil-primary) 0%,
+    var(--perfil-accent) 100%
+  );
+}

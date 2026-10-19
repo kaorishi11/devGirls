@@ -45,4 +45,4 @@ $lista = $pdo->query("SELECT * FROM pacientes ORDER BY nome")->fetchAll();
   </tr>
   <?php endforeach; ?>
 </table>
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php';
