@@ -100,7 +100,7 @@ $profissionais = $pdo->query("
     <td><?= htmlspecialchars($p['especialidade'] ?? '') ?></td>
     <td><?= htmlspecialchars($p['setor'] ?? '—') ?></td>
     <td><?= $p['turno'] ?? '—' ?></td>
-    <td><?= $p['disponibilidade'] ? '✅' : '❌' ?></td>
+    <td><?= $p['disponibilidade'] ? '<span class="status-icon active" aria-label="Disponível">●</span>' : '<span class="status-icon inactive" aria-label="Indisponível">○</span>' ?></td>
   </tr>
   <?php endforeach; ?>
 </table>

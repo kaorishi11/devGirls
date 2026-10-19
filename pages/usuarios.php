@@ -46,7 +46,7 @@ $usuarios = $pdo->query("SELECT * FROM usuarios ORDER BY nome")->fetchAll();
     <td><?= htmlspecialchars($u['nome']) ?></td>
     <td><?= htmlspecialchars($u['email']) ?></td>
     <td><?= $u['perfil'] ?></td>
-    <td><?= $u['ativo'] ? '✅' : '❌' ?></td>
+    <td><?= $u['ativo'] ? '<span class="status-icon active" aria-label="Ativo">●</span>' : '<span class="status-icon inactive" aria-label="Inativo">○</span>' ?></td>
     <td>
       <form method="post" style="display:inline">
         <button name="toggle" value="<?= $u['id'] ?>">

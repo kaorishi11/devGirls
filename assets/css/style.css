@@ -426,6 +426,32 @@ h2 {
   font-size: clamp(1.3rem, 2vw, 2rem);
 }
 
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: var(--primary);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.status-icon.active {
+  color: var(--success);
+}
+
+.status-icon.inactive {
+  color: var(--danger);
+}
+
 @media (max-width: 900px) {
   body {
     display: block;

@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="login-page">
   <form method="post" class="card login-card">
-    <h1>🏥 Senn Med AI</h1>
+    <h1><span class="brand-icon" aria-hidden="true">$( )</span>Senn Med AI</h1>
     <?php if ($erro): ?><p class="erro"><?= htmlspecialchars($erro) ?></p><?php endif; ?>
     <label>E-mail<input type="email" name="email" required></label>
     <label>Senha<input type="password" name="senha" required></label>
