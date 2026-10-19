@@ -8,22 +8,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['senha'] ?? '';
 
     $stmt = getPDO()->prepare("
-      SELECT u.*, p.id AS profissional_id
-      FROM usuarios u
-      LEFT JOIN profissionais p ON p.usuario_id = u.id
-      WHERE u.email = ? AND u.ativo = 1
-    ");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    SELECT u.*, p.id AS profissional_id
+    FROM usuarios u
+    LEFT JOIN profissionais p ON p.usuario_id = u.id
+    WHERE u.email = ? AND u.ativo = 1
+  ");
+  $stmt->execute([$email]);
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($senha, $user['senha_hash'])) {
-        $_SESSION['usuario_id']      = $user['id'];
-        $_SESSION['usuario_nome']    = $user['nome'];
-        $_SESSION['usuario_perfil']  = $user['perfil'];
-        $_SESSION['profissional_id'] = $user['profissional_id'];
-        header('Location: dashboard.php');
-        exit;
-    }
+  if ($user && password_verify($senha, $user['senha_hash'])) {
+      $_SESSION['usuario_id']      = $user['id'];
+      $_SESSION['usuario_nome']    = $user['nome'];
+      $_SESSION['usuario_perfil']  = $user['perfil'];
+      $_SESSION['profissional_id'] = $user['profissional_id'];
+      header('Location: dashboard.php');
+      exit;
+  }
     $erro = 'E-mail ou senha inválidos.';
 }
 ?>
