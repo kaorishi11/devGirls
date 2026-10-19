@@ -1,0 +1,62 @@
+* { box-sizing: border-box; font-family: system-ui, sans-serif; }
+body { margin: 0; display: flex; background: #f4f6f9; color: #222; }
+
+.sidebar {
+  width: 230px; background: #0d3b66; color: #fff;
+  min-height: 100vh; padding: 20px; position: sticky; top: 0;
+}
+.sidebar h2 { font-size: 18px; margin: 0 0 20px; }
+.sidebar a { display: block; color: #cfe3f5; text-decoration: none;
+             padding: 8px 10px; border-radius: 6px; margin-bottom: 4px; }
+.sidebar a:hover { background: #1e5a8a; color: #fff; }
+.sidebar a.logout { margin-top: 20px; color: #ffb4b4; }
+
+.content { flex: 1; padding: 24px 32px; }
+h1 { margin-top: 0; color: #0d3b66; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 16px; }
+.card { background: #fff; border-radius: 10px; padding: 18px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 20px; }
+.stat span { font-size: 13px; color: #666; }
+.stat strong { display: block; font-size: 28px; color: #0d3b66; }
+.stat.alerta strong { color: #c0392b; }
+
+.tabela { width: 100%; border-collapse: collapse; background: #fff;
+          border-radius: 8px; overflow: hidden; }
+.tabela th, .tabela td { padding: 10px 12px; text-align: left;
+                         border-bottom: 1px solid #eee; font-size: 14px; }
+.tabela th { background: #eef2f7; color: #333; }
+.tabela tr:hover td { background: #fafcff; }
+
+.badge { padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+.badge.aguardando_triagem { background: #ffe7b3; color: #7a5a00; }
+.badge.aguardando_medico  { background: #cce5ff; color: #004085; }
+.badge.em_atendimento     { background: #d4edda; color: #155724; }
+.badge.alta               { background: #e2e3e5; color: #383d41; }
+.badge.critica            { background: #f8d7da; color: #721c24; }
+.badge.alta               { background: #ffe5b3; color: #7a4a00; }
+.badge.media              { background: #fff3cd; color: #856404; }
+.badge.baixa              { background: #d1ecf1; color: #0c5460; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid label { display: flex; flex-direction: column; font-size: 13px; color: #444; }
+.form-grid label.full { grid-column: 1 / -1; }
+.form-grid input, .form-grid select, .form-grid textarea {
+  padding: 8px; border: 1px solid #ccd; border-radius: 6px; margin-top: 4px;
+}
+.form-grid button {
+  grid-column: 1 / -1; padding: 10px; background: #0d3b66; color: #fff;
+  border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
+}
+.form-grid button:hover { background: #155090; }
+.sucesso { background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; }
+.erro    { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 6px; }
+
+.login-page { display: flex; align-items: center; justify-content: center;
+              min-height: 100vh; background: #0d3b66; }
+.login-card { width: 320px; display: flex; flex-direction: column; gap: 12px; }
+.login-card h1 { text-align: center; color: #0d3b66; }
+.login-card label { display: flex; flex-direction: column; font-size: 13px; }
+.login-card input { padding: 8px; border: 1px solid #ccd; border-radius: 6px; margin-top: 4px; }
+.login-card button { padding: 10px; background: #0d3b66; color: #fff;
+                     border: none; border-radius: 6px; cursor: pointer; }
